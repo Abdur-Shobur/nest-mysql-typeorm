@@ -8,7 +8,7 @@ import {
 import { CreateRoleDevCategoryDto as DTO } from './dto/create-role-dev-category.dto';
 import { UpdateRoleDevCategoryDto as UpdateDto } from './dto/update-role-dev-category.dto';
 import { ROLE_DEV_CATEGORY_REPOSITORY_TOKEN } from './repositories/role-dev-category.repository.interface';
-import { RoleDevCategory } from './models/role-dev-category.model';
+import { RoleDevCategoryModel } from './models/role-dev-category.model';
 import { RoleDevCategoryTypeOrmRepository } from './repositories/implementations/role-dev-category.typeorm.repository';
 import { PaginationDto, PaginationMetaDto } from '@/helpers/pagination.dto';
 import { UpdateResult } from 'typeorm';
@@ -21,13 +21,13 @@ export class RoleDevCategoryService {
   ) {}
 
   public async findAll(paginationDto: PaginationDto): Promise<{
-    data: RoleDevCategory[];
+    data: RoleDevCategoryModel[];
     meta: PaginationMetaDto;
   }> {
     return this.roleDevCategoryRepository.findAll(paginationDto);
   }
 
-  public async create(dto: DTO): Promise<RoleDevCategory> {
+  public async create(dto: DTO): Promise<RoleDevCategoryModel> {
     try {
       return await this.roleDevCategoryRepository.create(dto);
     } catch (err) {
@@ -35,7 +35,7 @@ export class RoleDevCategoryService {
     }
   }
 
-  public async findOne(id: string): Promise<RoleDevCategory> {
+  public async findOne(id: string): Promise<RoleDevCategoryModel> {
     const result = await this.roleDevCategoryRepository.findById(id);
 
     if (!result) {

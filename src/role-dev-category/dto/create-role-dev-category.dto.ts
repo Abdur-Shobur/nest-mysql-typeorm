@@ -6,6 +6,7 @@ import {
   IsEnum,
 } from 'class-validator';
 import { iRoleDevCategoryStatus } from '../interfaces/role-dev-category.interface';
+import { CreateRoleDevSubCategoryDto } from '@/role-dev-sub-category/dto/create-role-dev-sub-category.dto';
 
 export class CreateRoleDevCategoryDto {
   @MaxLength(50, { message: 'Name must not exceed 50 characters' })
@@ -28,4 +29,7 @@ export class CreateRoleDevCategoryDto {
     message: `Status must be one of the following: ${Object.values(iRoleDevCategoryStatus).join(', ')}`,
   })
   readonly status: iRoleDevCategoryStatus;
+
+  @IsOptional()
+  readonly subCategories?: CreateRoleDevSubCategoryDto[];
 }

@@ -1,21 +1,35 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
+import { iRoleStatus } from '../interfaces/role.interface';
+import { RoleSubDevCategoryModel } from '@/role-dev-sub-category/models/role-dev-sub-category.model';
 
-@Entity()
-export class Users {
+@Entity('roles')
+export class RoleModel {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ length: 255 })
   name: string;
 
-  @Column()
-  username: string;
+  @Column({ type: 'text', nullable: true })
+  description: string;
+
+  @ManyToMany(
+    () => RoleSubDevCategoryModel,
+    (devSubCategory) => devSubCategory.roles,
+  )
+  @JoinTable({ name: 'role_permissions' })
+  permissions: RoleSubDevCategoryModel[];
 
   @Column({
-    unique: true,
+    type: 'enum',
+    enum: iRoleStatus,
+    default: iRoleStatus.Active,
   })
-  email: string;
-
-  @Column({ length: 255 })
-  password: string;
+  status: iRoleStatus;
 }

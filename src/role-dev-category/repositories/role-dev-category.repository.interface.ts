@@ -1,11 +1,11 @@
 import { PaginationDto, PaginationMetaDto } from '@/helpers/pagination.dto';
 import { CreateRoleDevCategoryDto } from '../dto/create-role-dev-category.dto';
-import { RoleDevCategory } from '../models/role-dev-category.model';
+import { RoleDevCategoryModel } from '../models/role-dev-category.model';
 import { UpdateRoleDevCategoryDto } from '../dto/update-role-dev-category.dto';
 
 export interface RoleDevCategoryRepository {
   findAll(paginationDto: PaginationDto): Promise<{
-    data: RoleDevCategory[];
+    data: RoleDevCategoryModel[];
     meta: PaginationMetaDto;
   }>;
   findBySub(sub: number): void;

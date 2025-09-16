@@ -1,9 +1,9 @@
-import { RoleDevCategory } from './role-dev-category.entity';
+import { RoleDevCategoryEntity } from './role-dev-category.entity';
 import { iRoleDevCategoryStatus } from '../interfaces/role-dev-category.interface';
 
 describe('RoleDevCategory class', () => {
   it('should create a RoleDevCategory with no fields (empty or default)', () => {
-    const category = new RoleDevCategory(
+    const category = new RoleDevCategoryEntity(
       0,
       '',
       '',
@@ -19,7 +19,7 @@ describe('RoleDevCategory class', () => {
   });
 
   it('should create a RoleDevCategory with all fields', () => {
-    const category = new RoleDevCategory(
+    const category = new RoleDevCategoryEntity(
       1,
       'Category Name',
       'category_permission_key',
@@ -37,12 +37,12 @@ describe('RoleDevCategory class', () => {
 
   it('should default status to Active if not provided', () => {
     // Create with default status by omitting the last argument
-    const category = new RoleDevCategory(2, 'Name', 'key', 'desc');
+    const category = new RoleDevCategoryEntity(2, 'Name', 'key', 'desc');
     expect(category.status).toBe(iRoleDevCategoryStatus.Active);
   });
 
   it('should create a RoleDevCategory with partial fields and default status', () => {
-    const category = new RoleDevCategory(3, 'Partial', '', '', undefined);
+    const category = new RoleDevCategoryEntity(3, 'Partial', '', '', undefined);
     expect(category).toBeTruthy();
     expect(category.name).toBe('Partial');
     expect(category.permissionKey).toBe('');

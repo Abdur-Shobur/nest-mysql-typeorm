@@ -1,6 +1,6 @@
 import { iRoleDevCategoryStatus } from '../interfaces/role-dev-category.interface';
 
-export class RoleDevCategory {
+export class RoleDevCategoryEntity {
   constructor(
     public id: number,
     public name: string,

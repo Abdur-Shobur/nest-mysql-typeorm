@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { DataSource } from '../../constants';
 import { ROLE_DEV_CATEGORY_REPOSITORY_TOKEN } from './role-dev-category.repository.interface';
-import { RoleDevCategory } from '../models/role-dev-category.model';
+import { RoleDevCategoryModel } from '../models/role-dev-category.model';
 import { RoleDevCategoryTypeOrmRepository } from './implementations/role-dev-category.typeorm.repository';
 
 export function provideRoleDevCategoryRepository(): Provider[] {
@@ -44,7 +44,7 @@ function provideRoleDevCategoryRepositoryFactory(
 @Injectable()
 export class RoleDevCategoryRepoDependenciesProvider {
   constructor(
-    @InjectRepository(RoleDevCategory)
-    public typeOrmRepository: Repository<RoleDevCategory>,
+    @InjectRepository(RoleDevCategoryModel)
+    public typeOrmRepository: Repository<RoleDevCategoryModel>,
   ) {}
 }

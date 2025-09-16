@@ -1,5 +1,6 @@
 import { PaginationMetaDto } from '@/helpers/pagination.dto';
 import { iResponse } from './response.interface';
+const isProduction = process.env.NODE_ENV === 'production';
 
 type SuccessResponseParams<T> = {
   data: T;
@@ -41,7 +42,7 @@ export class ResponseService {
       data: null,
       meta: undefined,
       statusCode,
-      errors,
+      errors: isProduction ? null : errors,
     };
   }
 }
